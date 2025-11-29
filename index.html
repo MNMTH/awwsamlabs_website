@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Awssam Labs — Coming Soon</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#5A3DFF;
+    --primary-dark:#4627E0;
+    --gradient: linear-gradient(135deg,#6A4BFF,#4C2DFF);
+    --bg:#ffffff;
+    --muted:#6b6b85;
+    --card:#fbfbff;
+    --radius:14px;
+    --shadow: 0 10px 30px rgba(64,64,96,0.08);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background:var(--bg); color:#111; -webkit-font-smoothing:antialiased;
+  }
+
+  /* NAV */
+  .navbar{
+    position:sticky; top:0; z-index:60;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 18px; gap:12px;
+    background:rgba(255,255,255,0.9);
+    backdrop-filter: blur(6px);
+    box-shadow:0 6px 18px rgba(30,30,60,0.05);
+  }
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo img{height:40px; width:auto; object-fit:contain}
+  .nav-cta{
+    background:var(--primary); color:#fff; padding:9px 16px; border-radius:10px;
+    font-weight:600; font-size:0.92rem; text-decoration:none;
+  }
+
+  /* HERO */
+  .hero{
+    padding:88px 20px 48px; text-align:center;
+    background: linear-gradient(180deg, #FBFBFF 0%, #F7F6FF 100%);
+  }
+  .hero-inner{max-width:920px; margin:0 auto}
+  .kicker{display:inline-block; padding:6px 10px; background:rgba(90,61,255,0.08); color:var(--primary-dark); border-radius:999px; font-weight:600; font-size:0.85rem; margin-bottom:16px}
+  h1{font-size:2.6rem; margin:6px 0 8px; line-height:1.02; letter-spacing:-0.6px}
+  .subtitle{color:var(--muted); max-width:720px; margin:0 auto 20px; font-size:1rem}
+  .hero-ctas{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:18px}
+  .btn-primary{
+    background:var(--gradient); color:white; padding:12px 22px; border-radius:12px;
+    font-weight:700; box-shadow:var(--shadow); text-decoration:none;
+  }
+  .btn-ghost{background:transparent; color:var(--primary-dark); padding:12px 18px; border-radius:12px; font-weight:700; text-decoration:none}
+
+  /* SECTIONS */
+  .section{padding:60px 18px}
+  .container{max-width:1120px; margin:0 auto}
+  h2{font-size:1.45rem; margin:0 0 14px}
+
+  /* CARDS grid */
+  .cards{display:grid; gap:18px}
+  .card{
+    background:var(--card); padding:20px; border-radius:14px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:10px; align-items:flex-start;
+  }
+  .card-icon{font-size:28px; color:var(--primary)}
+  .card h3{margin:0; font-size:1.02rem}
+  .card p{margin:0; color:var(--muted); font-size:0.95rem}
+  .learn{margin-top:auto; color:var(--primary-dark); font-weight:600; font-size:0.9rem; text-decoration:none}
+
+  /* features */
+  .features{display:flex; gap:14px; flex-wrap:wrap; margin-top:14px}
+  .feature{flex:1 1 220px; background:#fbfbff; padding:14px; border-radius:12px; box-shadow:0 8px 24px rgba(70,40,200,0.06)}
+  .feature h3{margin:0 0 6px; color:var(--primary-dark); font-size:1rem}
+  .feature p{margin:0;color:var(--muted); font-size:0.92rem}
+
+  /* timeline */
+  .timeline{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:18px}
+  .step{min-width:120px; background:white; padding:14px; border-radius:12px; box-shadow:var(--shadow); text-align:center; font-weight:700; color:var(--primary-dark)}
+
+  /* CTA band */
+  .cta-band{margin-top:44px; padding:44px 18px; border-radius:14px; background:var(--gradient); color:white; text-align:center}
+  .cta-band p{color:rgba(255,255,255,0.95); margin:8px 0 0}
+  .cta-band button{margin-top:14px; padding:12px 20px; border-radius:10px; border:none; background:white;color:var(--primary-dark); font-weight:700; cursor:pointer}
+
+  /* FORM */
+  .form-wrap{
+    margin-top:24px; background:linear-gradient(180deg,rgba(255,255,255,0.8),#fff);
+    padding:20px; border-radius:12px; box-shadow:var(--shadow);
+  }
+  form{display:flex; flex-direction:column; gap:12px}
+  label{font-size:0.9rem; font-weight:600; color:#222}
+  .row{display:flex; gap:12px; flex-wrap:wrap}
+  .col{flex:1 1 200px; min-width:0}
+  input[type="text"], input[type="email"], select, textarea{
+    width:100%; padding:12px 14px; border-radius:10px; border:1px solid #eef0ff; font-size:0.95rem;
+    background:white; outline:none; transition:box-shadow .15s, border-color .15s;
+  }
+  input:focus, select:focus, textarea:focus{box-shadow:0 6px 24px rgba(80,60,240,0.08); border-color: rgba(90,61,255,0.25)}
+  textarea{min-height:120px; resize:vertical}
+  .form-actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+  .submit-btn{background:var(--primary-dark); color:white; padding:12px 20px; border-radius:10px; border:none; font-weight:700; cursor:pointer}
+  .secondary-btn{background:transparent; color:var(--primary-dark); padding:10px 14px; border-radius:8px; border:1px solid rgba(70,40,200,0.08); cursor:pointer}
+
+  /* small note */
+  .small{font-size:0.85rem; color:var(--muted)}
+
+  /* footer */
+  footer{padding:18px; text-align:center; color:var(--muted); font-size:0.9rem; background:#fbfbff}
+
+  /* responsiveness */
+  @media(min-width:700px){
+    .cards{grid-template-columns:repeat(2, 1fr)}
+  }
+  @media(min-width:1000px){
+    .hero{padding:120px 20px 60px}
+    .cards{grid-template-columns:repeat(4, 1fr)}
+  }
+
+  /* smooth scroll for anchor links */
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="navbar container" style="max-width:1120px;">
+    <div class="logo">
+      <img src="logo.png" alt="Awssam Labs">
+    </div>
+    <!-- all CTAs should go to form -->
+    <a href="#project-form" class="nav-cta">Let’s talk</a>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <div class="hero-inner container">
+        <div class="kicker">Awssam Labs Services</div>
+        <h1>Coming Soon</h1>
+        <p class="subtitle">Custom-coded websites, apps, software solutions & UI/UX consultancy — tailored to scale, polished to impress.</p>
+
+        <div class="hero-ctas">
+          <!-- primary: scroll to form -->
+          <a class="btn-primary" href="#project-form">Let’s talk</a>
+          <a class="btn-ghost" href="#services">Services we offer</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <div class="container">
+        <h2>Services We Offer</h2>
+        <div class="cards" aria-hidden="false">
+          <div class="card">
+            <div class="card-icon">💻</div>
+            <h3>Custom Websites</h3>
+            <p>Responsive, SEO-ready websites built for performance and conversions.</p>
+            <a class="learn" href="#project-form">Learn more →</a>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">📱</div>
+            <h3>Mobile & Web Apps</h3>
+            <p>React, Flutter or native apps — built to scale and delight users.</p>
+            <a class="learn" href="#project-form">Learn more →</a>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">⚙️</div>
+            <h3>Software Solutions & Integrations</h3>
+            <p>APIs, automation and integrations to simplify workflows.</p>
+            <a class="learn" href="#project-form">Learn more →</a>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🎨</div>
+            <h3>UI/UX Consultancy</h3>
+            <p>Research → Wireframes → Prototypes → Handoff with dev-ready assets.</p>
+            <a class="learn" href="#project-form">Learn more →</a>
+          </div>
+        </div>
+
+        <!-- Why choose us -->
+        <div style="margin-top:28px">
+          <h2 style="margin-top:8px">Why Choose Us</h2>
+          <div class="features" role="list">
+            <div class="feature" role="listitem">
+              <h3>Premium Look & Feel</h3>
+              <p>Designs polished to industry standards and conversion-friendly.</p>
+            </div>
+            <div class="feature" role="listitem">
+              <h3>Minimal Costing</h3>
+              <p>Optimized budgets with clear deliverables and timelines.</p>
+            </div>
+            <div class="feature" role="listitem">
+              <h3>Custom Coded</h3>
+              <p>Tailored solutions—no templates, just purpose-built code.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div style="margin-top:28px; text-align:center;">
+          <h2 style="margin-top:8px">How We Work</h2>
+          <div class="timeline">
+            <div class="step">🔍 Discover</div>
+            <div class="step">🧩 Build</div>
+            <div class="step">🚀 Deliver</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / PROJECT FORM -->
+    <section id="project-form" class="section" aria-labelledby="project-form-heading">
+      <div class="container" style="max-width:840px">
+        <h2 id="project-form-heading">Project Order Form</h2>
+        <p class="small" style="margin-top:6px">Fill the details below — on submit, we'll open Gmail compose prefilled with your project info so you can send it directly to <strong>awssamlabs@gmail.com</strong>.</p>
+
+        <div class="form-wrap">
+          <form id="orderForm" autocomplete="on">
+            <div class="row">
+              <div class="col">
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required>
+              </div>
+              <div class="col">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@company.com" required>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label for="projectType">Project type</label>
+                <select id="projectType" name="projectType" required>
+                  <option value="">-- Select project type --</option>
+                  <option>Custom Website</option>
+                  <option>Mobile / Web App</option>
+                  <option>Software Integration / API</option>
+                  <option>UI/UX Consultancy</option>
+                  <option>Other / Consultation</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="budget">Estimated budget (optional)</label>
+                <input id="budget" name="budget" type="text" placeholder="₹, $ or range">
+              </div>
+            </div>
+
+            <div>
+              <label for="timeline">Ideal timeline (optional)</label>
+              <input id="timeline" name="timeline" type="text" placeholder="e.g., 4-6 weeks, asap">
+            </div>
+
+            <div>
+              <label for="message">Project brief / requirements</label>
+              <textarea id="message" name="message" placeholder="Describe the project, goals, key features..." required></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="submit-btn">Open Gmail & Send</button>
+              <button type="button" class="secondary-btn" id="saveDraft">Copy summary</button>
+              <div style="flex:1"></div>
+              <div class="small">We will not store this data — the form opens your mail client to send directly.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <section class="cta-band">
+      <div class="container" style="max-width:920px">
+        <h2>Ready to build something amazing?</h2>
+        <p>Fast delivery with enterprise-grade quality — let’s talk.</p>
+        <div style="margin-top:12px">
+          <a href="#project-form" class="btn-primary" style="display:inline-block">Start your project</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="max-width:1120px">© <span id="year"></span> Awssam Labs • Privacy • Terms • contact@awssamlabs@gmail.com</div>
+  </footer>
+
+<script>
+  // fill current year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Helper: build Gmail compose URL
+  function openGmailCompose(to, subject, body) {
+    const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1'
+      + '&to=' + encodeURIComponent(to)
+      + '&su=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
+    // open Gmail in new tab
+    const win = window.open(gmailUrl, '_blank');
+    if (!win) {
+      // fallback to mailto
+      window.location.href = 'mailto:' + encodeURIComponent(to)
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+    }
+  }
+
+  // Build the email body from form
+  function buildEmailFromForm(data){
+    const lines = [];
+    lines.push('New project enquiry — Awssam Labs');
+    lines.push('----------------------------------');
+    lines.push('Name: ' + data.get('name'));
+    lines.push('Email: ' + data.get('email'));
+    lines.push('Project type: ' + data.get('projectType'));
+    if (data.get('budget')) lines.push('Budget: ' + data.get('budget'));
+    if (data.get('timeline')) lines.push('Timeline: ' + data.get('timeline'));
+    lines.push('');
+    lines.push('Project brief:');
+    lines.push(data.get('message'));
+    lines.push('');
+    lines.push('--- End of message ---');
+    return lines.join('\\n');
+  }
+
+  // Form submit handler
+  document.getElementById('orderForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+
+    // Basic validation (again)
+    if(!data.get('name') || !data.get('email') || !data.get('projectType') || !data.get('message')){
+      alert('Please fill name, email, project type and project brief.');
+      return;
+    }
+
+    const subject = '[Project Enquiry] ' + data.get('projectType') + ' — ' + data.get('name');
+    const body = buildEmailFromForm(data);
+    // open gmail compose window
+    openGmailCompose('awssamlabs@gmail.com', subject, body);
+
+    // optional: visually indicate action
+    const submitBtn = form.querySelector('.submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Opening Gmail...';
+    setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Open Gmail & Send';
+    }, 3000);
+  });
+
+  // Copy summary to clipboard (secondary)
+  document.getElementById('saveDraft').addEventListener('click', function(){
+    const form = document.getElementById('orderForm');
+    const data = new FormData(form);
+    const body = buildEmailFromForm(data);
+    navigator.clipboard?.writeText(body).then(()=> {
+      alert('Project summary copied to clipboard. You can paste it into your email.');
+    }).catch(()=> {
+      alert('Unable to copy. Please select and copy the summary manually:\\n\\n' + body);
+    });
+  });
+
+  // Make all "Learn more" links and hero CTAs scroll to form (already anchor links).
+  // Smooth scroll available via CSS (scroll-behavior).
+</script>
+</body>
+</html>
