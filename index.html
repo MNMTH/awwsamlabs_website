@@ -3,7 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Awssam Labs — Coming Soon</title>
+
+<!-- ⭐ SEO META TAGS -->
+<title>Awssam Labs | Custom Websites, Web Apps & IT Consultancy</title>
+<meta name="description" content="Awssam Labs delivers custom-coded websites, web apps, UI/UX design, and IT consultancy solutions at the best industry price with fast delivery.">
+<meta name="keywords" content="Awssam Labs, IT consultancy, web development, custom website, software solutions, UI UX Agency Assam, web design, app development">
+<meta name="robots" content="index, follow">
+<!-- ⭐ END SEO TAGS -->
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -105,13 +112,10 @@
   .submit-btn{background:var(--primary-dark); color:white; padding:12px 20px; border-radius:10px; border:none; font-weight:700; cursor:pointer}
   .secondary-btn{background:transparent; color:var(--primary-dark); padding:10px 14px; border-radius:8px; border:1px solid rgba(70,40,200,0.08); cursor:pointer}
 
-  /* small note */
   .small{font-size:0.85rem; color:var(--muted)}
 
-  /* footer */
   footer{padding:18px; text-align:center; color:var(--muted); font-size:0.9rem; background:#fbfbff}
 
-  /* responsiveness */
   @media(min-width:700px){
     .cards{grid-template-columns:repeat(2, 1fr)}
   }
@@ -120,7 +124,6 @@
     .cards{grid-template-columns:repeat(4, 1fr)}
   }
 
-  /* smooth scroll for anchor links */
   html { scroll-behavior: smooth; }
 </style>
 </head>
@@ -131,7 +134,6 @@
     <div class="logo">
       <img src="logo.png" alt="Awssam Labs">
     </div>
-    <!-- all CTAs should go to form -->
     <a href="#project-form" class="nav-cta">Let’s talk</a>
   </header>
 
@@ -144,7 +146,6 @@
         <p class="subtitle">Custom-coded websites, apps, software solutions & UI/UX consultancy — tailored to scale, polished to impress.</p>
 
         <div class="hero-ctas">
-          <!-- primary: scroll to form -->
           <a class="btn-primary" href="#project-form">Let’s talk</a>
           <a class="btn-ghost" href="#services">Services we offer</a>
         </div>
@@ -216,7 +217,7 @@
       </div>
     </section>
 
-    <!-- CONTACT / PROJECT FORM -->
+    <!-- CONTACT FORM -->
     <section id="project-form" class="section" aria-labelledby="project-form-heading">
       <div class="container" style="max-width:840px">
         <h2 id="project-form-heading">Project Order Form</h2>
@@ -274,7 +275,6 @@
       </div>
     </section>
 
-    <!-- CTA BAND -->
     <section class="cta-band">
       <div class="container" style="max-width:920px">
         <h2>Ready to build something amazing?</h2>
@@ -291,26 +291,22 @@
   </footer>
 
 <script>
-  // fill current year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Helper: build Gmail compose URL
   function openGmailCompose(to, subject, body) {
     const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1'
       + '&to=' + encodeURIComponent(to)
       + '&su=' + encodeURIComponent(subject)
       + '&body=' + encodeURIComponent(body);
-    // open Gmail in new tab
+
     const win = window.open(gmailUrl, '_blank');
     if (!win) {
-      // fallback to mailto
       window.location.href = 'mailto:' + encodeURIComponent(to)
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(body);
     }
   }
 
-  // Build the email body from form
   function buildEmailFromForm(data){
     const lines = [];
     lines.push('New project enquiry — Awssam Labs');
@@ -325,16 +321,14 @@
     lines.push(data.get('message'));
     lines.push('');
     lines.push('--- End of message ---');
-    return lines.join('\\n');
+    return lines.join('\n');
   }
 
-  // Form submit handler
   document.getElementById('orderForm').addEventListener('submit', function(e){
     e.preventDefault();
     const form = e.target;
     const data = new FormData(form);
 
-    // Basic validation (again)
     if(!data.get('name') || !data.get('email') || !data.get('projectType') || !data.get('message')){
       alert('Please fill name, email, project type and project brief.');
       return;
@@ -342,10 +336,9 @@
 
     const subject = '[Project Enquiry] ' + data.get('projectType') + ' — ' + data.get('name');
     const body = buildEmailFromForm(data);
-    // open gmail compose window
+
     openGmailCompose('awssamlabs@gmail.com', subject, body);
 
-    // optional: visually indicate action
     const submitBtn = form.querySelector('.submit-btn');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Opening Gmail...';
@@ -355,7 +348,6 @@
     }, 3000);
   });
 
-  // Copy summary to clipboard (secondary)
   document.getElementById('saveDraft').addEventListener('click', function(){
     const form = document.getElementById('orderForm');
     const data = new FormData(form);
@@ -363,13 +355,10 @@
     navigator.clipboard?.writeText(body).then(()=> {
       alert('Project summary copied to clipboard. You can paste it into your email.');
     }).catch(()=> {
-      alert('Unable to copy. Please select and copy the summary manually:\\n\\n' + body);
+      alert('Unable to copy. Please select and copy manually:\n\n' + body);
     });
   });
-
-  // Make all "Learn more" links and hero CTAs scroll to form (already anchor links).
-  // Smooth scroll available via CSS (scroll-behavior).
 </script>
+
 </body>
 </html>
-
